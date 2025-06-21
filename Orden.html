@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Estudios</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f8fb;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h3 {
+      background-color: #0077cc;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 30px;
+    }
+    .campo {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      padding: 10px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+    .campo:hover {
+      background-color: #eef5fb;
+    }
+    .campo input[type='checkbox'] {
+      margin-right: 12px;
+      transform: scale(1.2);
+    }
+    .texto-con-fondo {
+      flex: 1;
+    }
+    #filtro-general {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+  .campo input[type='checkbox']:checked + .texto-con-fondo {
+    background-color: #c8f7c5;
+    border: 2px solid #5cb85c;
+  }
+  .seleccionado {
+    background-color: #c8f7c5 !important;
+    border: 2px solid #5cb85c;
+  }
+</style>
+</head>
+<body>
+  <script>
+  function filtrarGeneral() {
+    const input = document.getElementById('filtro-general').value.toLowerCase();
+    const secciones = document.querySelectorAll('h3');
+    const campos = document.querySelectorAll('.campo');
+
+    campos.forEach(campo => {
+      const textoElemento = campo.querySelector('.texto-con-fondo');
+      const texto = textoElemento.textContent.toLowerCase();
+      if (input && texto.includes(input)) {
+        campo.style.display = '';
+        const regex = new RegExp(input, 'gi');
+        textoElemento.innerHTML = textoElemento.textContent;
+      } else if (!input) {
+        campo.style.display = '';
+        textoElemento.innerHTML = textoElemento.textContent;
+      } else {
+        campo.style.display = 'none';
+        textoElemento.innerHTML = textoElemento.textContent;
+      }
+    });
+
+    secciones.forEach(seccion => {
+      let siguiente = seccion.nextElementSibling;
+      let tieneVisible = false;
+      while (siguiente && siguiente.classList.contains('campo')) {
+        if (siguiente.style.display !== 'none') {
+          tieneVisible = true;
+        }
+        siguiente = siguiente.nextElementSibling;
+      }
+      seccion.style.display = tieneVisible ? '' : 'none';
+    });
+  }
+</script>
+<input type="text" id="filtro-general" class="filtro-input" placeholder="Buscar en todo el catálogo..." onkeyup="filtrarGeneral()">
+
+<h3>HEMATOLOGÍA</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Citometría Hemática Completa</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Plaquetas</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Reticulocitos</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Inducción de Drepanocitos</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil de Hierro: Hierro, CTFH, Ferritina, Transferrina, % de Sat</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Ácido Fólico, Vitamina B12</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Células LE</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Investigación de Plasmodium (Gota gruesa)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Citología de Moco Nasal (1) (2) (3)</div></div>
+
+<h3>HORMONAS</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Tiroideo I</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Tiroideo II</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Tiroideo III</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Hormonas Femeninas I</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Hormonas Femeninas II</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Hormonas Femeninas III</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Hormonas Masculinas I</div></div>
+
+<h3>UROANÁLISIS</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Examen General de Orina (EGO)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Microalbuminuria</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Depuración de Creatinina en Orina de 24 Hrs</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Cuantificación de Proteínas en Orina de 24 Hrs</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Fracción Beta de HCG en Orina (Cualitativa)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antidoping (3)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antidoping (6)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antidoping (12)</div></div>
+
+<h3>TENDENCIA HEMORRÁGICA</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Tiempo de protrombina (TP) + INR</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Tiempo parcial de tromboplastina (aTTP)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Fibrinógeno</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Retracción del Coágulo</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Tiempo de Sangrado y Coagulación</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Fragilidad Capilar</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Dímero D</div></div>
+
+<h3>PARASITOLOGÍA</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Coprológico</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Coproparasitoscópico (1) (2) (3)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Leucocitos en Moco Fecal</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Amiba en Fresco</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antígeno de Rotavirus en heces</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Azúcares Reductores</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Sangre Oculta en Heces</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Investigación de Oxiuros</div></div>
+
+<h3>QUÍMICA CLÍNICA</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">QS5</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">QS7</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil de Lípidos</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil de Lípidos Completo</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Química Sanguínea de 24 elementos</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Química Sanguínea de 36 elementos</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Hemoglobina Glicada (HbA1c)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Resistencia a la Insulina por HOMA</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Insulina</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Glucosa postpandrial</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Curva de tolerancia a la glucosa</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Test de O'Sullivan</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Bilirrubinas séricas</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">TGP/ALT</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">TGO/AST</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">GGT</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">ALP</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Pruebas de Función Hepática 1</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Pruebas de Función Hepática Completas</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil de Proteínas</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Cardiaco 1</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Cardiaco 2</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Toxémico (Preeclampsia)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Cistatina C</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Electrolitos séricos (3)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Electrolitos séricos (6)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Renal Básico</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Renal ERC</div></div>
+
+<h3>MARCADORES TUMORALES</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Alfaferoproteína (AFP)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antígeno Prostático Total (PSA)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antígeno Prostático Libre (FPSA)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antígeno Carcinoembrionario (CEA)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">CA-125</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">CA-15-3</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">CA-19-9</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Cyfra 21-1</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Ca72-4</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Beta 2 microglobulina</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Cuantificación Gonadotrofina Coriónica</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil de Riesgo de CA de Ovario</div></div>
+
+<h3>INMUNOLOGÍA</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Grupo Sanguíneo y Rh</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Fracción Beta de HCG en suero (Cualitativa)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Cuantificación de Fracción Beta de HCG en suero</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">V.D.R.L.</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Reacciones Febriles</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti-HIV 1-2 y antígeno HIV p24 (4a. Generación)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Coombs Directo e Indirecto</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Factor Reumatoide (FR) Cuantitativo</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antiestreptolisinas (ASTO) Cuantitativo</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Proteína "C" Reactiva (PCR) Cuantitativo</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Péptido Cíclico Citrulinado (CCP)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Reumático1: FR, ASTO, PCR, Ácido Úrico, VSG</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Reumático2: Perfil reumático 1 + Ac. anti-CCP</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Proteína "C" Reactiva HS (PCR-HS)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Antinucleares ELISA</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Antinucleares IFI</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti-DNA ELISA</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti-DNA IFI</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti Cardiolipina IgG e IgM</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Inmunoglobulina IgE</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti-Helicobacter pylori IgA, IgG</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antígeno de Helicobacter pylori en HECES</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti-Chlamydia trachomatis IgA, IgG</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Anti-Dengue DUO: IgG, IgM, Antígeno NS1</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Acs. Chikungunya IgM</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Antígeno Zika NS1</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil Hepatitis viral: HAVM, HBsAg, HCV</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Perfil TORCH IgG, IgM: Toxoplasma, Rubeola, Citomegalovirus, Herpes simple II</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">SARS-CoV-2 Antigeno Prueba Rapida</div></div>
+
+<h3>BIOLOGÍA MOLECULAR</h3>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">SARS-CoV-2 RT-PCR en tiempo real (diagnóstica)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">PCR Panel bacteriano de Diarrea</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">PCR Panel viral de Diarrea</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">PCR Detección Mycobacterium tuberculosis</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">PCR Detección cromosoma Filadelfia BCR/ABL t(9;22)</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">PCR Infeccioso de Trasmisión Sexual: Trichomonas vaginalis, Mycoplasma genitalium, Mycoplasma hominis, Chlamydia trachomatis, Ureaplasma urealyticum, Neisseria gonorrhoeae</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Detección de Virus de Papiloma Humano por PCR</div></div>
+<div class="campo"><input type="checkbox"><div class="texto-con-fondo">Genotipificación de Virus de Papiloma Humano</div></div>
+
+</body>
+</html>
